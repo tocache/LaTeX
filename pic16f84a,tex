@@ -1,0 +1,33 @@
+\begin{circuitikz}
+\ctikzset{multipoles/thickness=4}
+\ctikzset{multipoles/external pins thickness=2}
+\ctikzset{multipoles/dipchip/width=2}
+\draw (0,0) node[dipchip,
+num pins=18,
+hide numbers,
+external pins width=0.3,
+external pad fraction=4](C){};
+\node[rotate=90] {PIC18F84A};
+\draw (C.pin 4) -- ++(-2.5,0) coordinate (asdf) to [R, l_=\SI{10}{k\ohm}] 
+ ++(0,2) node[vcc]{+5V};
+ \draw (asdf) -- ++ (0,-1) to [push button, l=RST] ++ (0,-1.5) coordinate (fdda);
+ \draw (fdda) to ++(0,0) node [ground]{};
+ \node [right, font=\tiny]
+ at (C.bpin 4) {-MCLR};
+ \draw (C.pin 5) -- ++(-1.5,0) node[ground]{};
+ \node [right, font=\tiny]
+ at (C.bpin 5) {VSS};
+ \draw (C.pin 14) -- ++(1.5,0) node[vcc]{+5V};
+ \node [left, font=\tiny]
+ at (C.bpin 14) {VDD};
+ \draw (C.pin 13) -- ++ (1.5,0) to [R=330<\ohm>] ++(2,0) coordinate (mmm);
+ \draw (mmm) to[leD*] ++(0,-2) coordinate(mmm2);
+ \draw (mmm2) node [ground]{};
+ \node [left, font=\tiny]
+ at (C.bpin 13) {RB7}; 
+ \draw (C.pin 18) -- ++ (2.5,0) to [R=330<\ohm>] ++(2,0) coordinate (mmm3);
+  \draw (mmm3) to[leD*] ++(0,-2) coordinate(mmm3);
+ \draw (mmm3) node [ground]{};
+\node [left, font=\tiny]
+ at (C.bpin 18) {RA1};
+ \end{circuitikz}
